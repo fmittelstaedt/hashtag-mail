@@ -37,6 +37,7 @@
         "https://mail.google.com/*"
       ],
       "js": [
+        "js/jquery/jquery.min.js",
         "src/inject/inject.js"
       ]
     }
