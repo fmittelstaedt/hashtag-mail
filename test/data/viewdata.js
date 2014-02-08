@@ -13,8 +13,11 @@ Here is the readme file from there!\n\
 Am 08.02.2014 um 17:48 schrieb Karina <karina.palyutina@gmail.com>:\n\
 there there here https://docs.google.com/document/d/1ygvDrwJUjN0g14JbMg0Jj8rZv7y-gZ9YRmxvlj6nZVQ/edit?usp=sharing\n",
 	hashtags: [
-		{tag: "#readme", "paragraph1 #readme"},
-		{tag: "#doc", "paragraph2 #doc"}
+		{tag: "#readme", content:"paragraph1 #readme"},
+		{tag: "#doc", content;"paragraph2 #doc"}
+	attachments:[
+	{name:"Readme.md", url:"https://mail.google.com/mail/u/0/?ui=2&ik=01f4a686dc&view=att&th=14412ad231073b51&attid=0.1.1&disp=safe&zw"},
+	{name:"Readme.md", url:"https://mail.google.com/mail/u/0/?ui=2&ik=01f4a686dc&view=att&th=14412ad231073b51&attid=0.1.1&disp=safe&zw"}
 	]
 },
 
