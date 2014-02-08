@@ -15,7 +15,12 @@ there there here https://docs.google.com/document/d/1ygvDrwJUjN0g14JbMg0Jj8rZv7y
 	hashtags: [
 		{tag: ["#readme", "paragraph1 #readme"]},
 		{tag: ["#doc", "paragraph2 #doc"]}
-	]
+  ],
+    
+  attachments: [
+  	{name:"Readme.md", url:"https://mail.google.com/mail/u/0/?ui=2&ik=01f4a686dc&view=att&th=14412ad231073b51&attid=0.1.1&disp=safe&zw"},
+  	{name:"Readme.md", url:"https://mail.google.com/mail/u/0/?ui=2&ik=01f4a686dc&view=att&th=14412ad231073b51&attid=0.1.1&disp=safe&zw"}
+  ]	
 },
 
 {
@@ -34,9 +39,7 @@ there there here https://docs.google.com/document/d/1ygvDrwJUjN0g14JbMg0Jj8rZv7y
 		{tag: ["#readme", "paragraph3 #readme"]},
 		{tag: ["#doc", "paragraph4 #doc"]}
 	]
-}
-
-];
+}];
 
 
 
