@@ -1,0 +1,26 @@
+.list-wrapper {
+  margin-top: 20px;
+}
+
+.list {
+  max-height: 700px;
+  overflow-y: scroll;
+}
+
+.list-single {
+  width: 80%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.list-multiple {
+  float:left;
+  width: 300px;
+  margin-left: 20px;
+}
+
+.list-header {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
