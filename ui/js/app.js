@@ -37,7 +37,8 @@ $(document).ready(function() {
     var recipients = {}
 
     if (hashtags.length==1) {
-
+      $('body').css('width', '');
+      $('#footer').css('width', '');
     } else {
       var width = hashtags.length * 322
       $('body').css('width', width + 'px');
