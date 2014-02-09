@@ -2,7 +2,13 @@ $(document).ready(function() {
   var wrapper = $(".list-wrapper");
   
   for (var i = 0; i < hashtags.length; i++) {
-    var list = $('<div class="list list-multiple well">').wrap('</div>').appendTo(wrapper);
+    
+    if (hashtags.length==1) {
+           var list = $('<div class="list list-single well">').wrap('</div>').appendTo(wrapper);
+         }
+         else {
+           var list = $('<div class="list list-multiple well">').wrap('</div>').appendTo(wrapper);
+         }
     
     var list_header = $('<div class="list-header">').text(hashtags[i].tag).wrap('</div>').appendTo(list);
     
