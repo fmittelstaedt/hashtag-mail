@@ -11,27 +11,16 @@ function findHashtagsInBody(body) {
 		var paragraph = $(this).html();
 		var string = paragraph;
 
-		console.log(regexp.exec(string));
-		console.log(regexp.exec(string));
-		console.log(regexp.exec(string));
-		console.log(regexp.exec(string));
-
 		var found;
 		while (found = regexp.exec(string)) {
 			var tag = found[0];
 			if (!(tag in hashtags)) {
+				hashtags.push(tag);
 				hashtags[tag] = new Array();
-				hashtags[tag].push(paragraph);
 			}
-		    matches.push(found[0]);
-		    //console.log(string.substring(found.index + tag.length));
+			hashtags[tag] = paragraph;
 		    string = string.substring(found.index + tag.length);
 		}
-
-
-		// while ((match = regexp.exec(paragraph)) != null) {
-		// 	
-		// }
 	});
 
 	return hashtags;
@@ -113,32 +102,38 @@ function scanPageForEmails() {
 		emails[index]["hashtags"] = findHashtagsInBody(emails[index]["body"]);
 
 	});
-	
-	console.log(emails);
+
 	return emails;
 }
 
 function convertEmailsToHashtags(emails) {
 	var hashtags = new Array();
 
-	emails.forEach(function(entry) {
-	    emails[entry]["hashtags"].forEach(function(entry2){
-	    	var tag = emails[entry]["hashtags"][entry2]["tag"];
+	console.log(emails);
+
+	emails.forEach(function(email) {
+		console.log(email);
+	    email["hashtags"].forEach(function(tag){
+	    	console.log(tag);
 	    	if (!(tag in hashtags)) {
+	    		hashtags.push(tag);
 	    		hashtags[tag] = new Array();
 	    	}
-	    	n = length(hashtags[tag]);
+
+	    	n = hashtags[tag].length;
 	    	hashtags[tag][n] = new Array();
 
-	    	hashtags[tag][n]["profile_img"] = emails[entry]["profile_img"];
-	    	hashtags[tag][n]["from"] = emails[entry]["from"];
-	    	hashtags[tag][n]["to"] = emails[entry]["to"];
-	    	hashtags[tag][n]["datetime"] = emails[entry]["datetime"];
-	    	hashtags[tag][n]["body"] = emails[entry]["body"];
+	    	hashtags[tag][n]["profile_img"] = email["profile_img"];
+	    	hashtags[tag][n]["from"] = email["from"];
+	    	hashtags[tag][n]["to"] = email["to"];
+	    	hashtags[tag][n]["datetime"] = email["datetime"];
+	    	hashtags[tag][n]["body"] = email["body"];
 
-	    	hashtags[tag][n]["paragraph"] = emails[entry]["hashtags"][entry2]["paragraph"];
+	    	hashtags[tag][n]["paragraph"] = email["hashtags"][tag];
 	    })
 	});
+
+	console.log(hashtags);
 	
 	return hashtags;
 }
