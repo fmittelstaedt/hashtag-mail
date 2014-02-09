@@ -6,6 +6,8 @@ $(document).ready(function() {
   
   var wrapper = $(".list-wrapper");
   
+  var recipients = {}
+
   for (var i = 0; i < hashtags.length; i++) {
     if (hashtags.length==1) {
       var list = $('<div class="list list-single well">').wrap('</div>').appendTo(wrapper);
@@ -19,8 +21,11 @@ $(document).ready(function() {
     var messages = $('<div class="messages">').wrap('</div>').appendTo(list);
     
     for (var x = 0; x < hashtags[i].emails.length; x++) {
-      var email = emails[x];
-      var message = $('<div class="message panel panel-success">').wrap('</div>').appendTo(messages);
+      var email = hashtags[i].emails[x];
+
+      recipients[email.from.email] = email.from.name;
+
+      var message = $('<div class="message panel panel-success" data-email="' + email.from.email + '">').wrap('</div>').appendTo(messages);
       var panel_heading = $('<div class="panel-heading">').wrap('</div>').appendTo(message);
       
       var avatar = $('<img id="avatar" src="30.png"></img>').appendTo(panel_heading)
@@ -46,6 +51,16 @@ $(document).ready(function() {
       });  
     }
   }
+
+  var footer = $("#footer .nav-pills")
+  for(var recipient in recipients) {
+    footer.append('<li class="active" data-email=' + recipient + '"><a href="#">' + recipients[recipient] + '</a></li>')
+  }
+
+  $('[data-email="' + recipients[recipient] + '"]').click(function(e) {
+    alert("hello")
+    $('[data-email="' + recipients[recipient] + '"]').toggle();
+  });
 
   function puluralise(word, count) {
     if (count > 1) {
