@@ -10,6 +10,11 @@ $(document).ready(function() {
       lightpink: "#ffb6c1",
       lightyellow: "#ffffe0",
       lime: "#00ff00",
+      gold: "#ffd700",
+      beige: "#f5f5dc",
+      aqua: "#00ffff",
+      olive: "#808000",
+      silver: "#c0c0c0"
     };
     
     Colors.random = function() {
@@ -27,6 +32,7 @@ $(document).ready(function() {
 
     var wrapper = $(".list-wrapper");
     wrapper.empty();
+    $("#footer .nav-pills").empty();
 
     var recipients = {}
 
@@ -92,7 +98,7 @@ $(document).ready(function() {
       console.log($(this).find(".panel-heading").attr('style', 'background-color: ' + recipients[email].color + ' !important'));
     });
 
-    var footer = $("#footer .nav-pills")
+    var footer = $("#footer .nav-pills");
     for(var recipient in recipients) {
       var pill = $('<li data-email=' + recipient + '"><a href="#">' + recipients[recipient].name + '</a></li>')
       var person = pill.wrap('</div>').appendTo(footer);
