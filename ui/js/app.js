@@ -30,6 +30,14 @@ $(document).ready(function() {
 
     var recipients = {}
 
+    if (hashtags.length==1) {
+
+    } else {
+      var width = hashtags.length * 322
+      $('body').css('width', width + 'px');
+      $('#footer').css('width', width + 'px');
+    }
+
     for (var i = 0; i < hashtags.length; i++) {
       if (hashtags.length==1) {
         var list = $('<div class="list list-single well">').wrap('</div>').appendTo(wrapper);
@@ -59,8 +67,8 @@ $(document).ready(function() {
       //contacts.append("<b>To: </b>" + "<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title=" + email.to.length + puluralise(" recipient", email.to.length)+ ">" + email.from.name + " </a>")
   
         var panel_body = $('<div class="panel-body">').wrap('</div>').appendTo(message);
-      var body1 = $('<div class="text">').text(email.paragraph +"...").wrap('</div>').appendTo(panel_body);
-        var body2 = $('<div class="text" style="display: none;">').text(email.body).wrap('</div>').appendTo(panel_body);
+      var body1 = $('<div class="text">').html(email.paragraph +"...").wrap('</div>').appendTo(panel_body);
+	var body2 = $('<div class="text" style="display: none;">').html(email.body).wrap('</div>').appendTo(panel_body);
   
         var extras = $('<div class="list-extra">').wrap('</div>').appendTo(panel_body);
 
@@ -91,7 +99,7 @@ $(document).ready(function() {
       pill.on("click", function() {
         var email = $(this).data("email");
         // maybe comment
-        $(".message").show();
+	//$(".message").show();
         $(".message").filter(function() {
           return $(this).data("message-email") != email.substring(0, email.length - 1)
         }).toggle();

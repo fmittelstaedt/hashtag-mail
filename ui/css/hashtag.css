@@ -2,10 +2,14 @@
 
 body {
   background: #1ABC9C;
+  min-width: 100%;
+  /* width: 1932px; */
 }
 
 .list-wrapper {
   margin-top: 20px;
+  overflow-x: auto;
+
 }
 
 .list {
