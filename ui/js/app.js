@@ -34,12 +34,12 @@ $(document).ready(function() {
       contacts.append("<b>To: </b>" + email.to.length + puluralise(" recipient", email.to.length))
       
       var panel_body = $('<div class="panel-body">').wrap('</div>').appendTo(message);
-      var body1 = $('<div class="text">').text(email.body.substring(0,100)).wrap('</div>').appendTo(panel_body);
+      var body1 = $('<div class="text">').text(email.body.substring(0,100)+"...").wrap('</div>').appendTo(panel_body);
       var body2 = $('<div class="text" style="display: none;">').text(email.body).wrap('</div>').appendTo(panel_body);
       
       var extras = $('<div class="list-extra">').wrap('</div>').appendTo(panel_body);
       var button = $('<button type="button" style="float:right;" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-down"></span>').wrap('</button>').appendTo(extras);
-        button.bind("click", function(e) {
+        button.on("click", function() {
         	if ($(this).find("span").hasClass("glyphicon-chevron-down")) {
         	  $(this).find("span").removeClass('glyphicon-chevron-down');
         	  $(this).find("span").addClass('glyphicon-chevron-up');
@@ -47,7 +47,7 @@ $(document).ready(function() {
         	  $(this).find("span").removeClass('glyphicon-chevron-up');
         	  $(this).find("span").addClass('glyphicon-chevron-down');
         	}
-	        $(this).parent().find(".text").toggle();
+	        $(this).parent().parent().find(".text").toggle();
       });  
     }
   }
