@@ -31,11 +31,14 @@ $(document).ready(function() {
   
         var avatar = $('<img id="avatar" src="' + email.profile_img + '"></img>').appendTo(panel_heading)
         var contacts = $('<div id="contacts"></div>').appendTo(panel_heading)
-        var to = $("<b>From: </b>" + email.from.email + " </br>").appendTo(contacts)
-        contacts.append("<b>To: </b>" + email.to.length + puluralise(" recipient", email.to.length))
+      var to = $("<b>From: </b>"+"<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title='" + email.from.email + "'>" + email.from.name + " </a>").appendTo(contacts)
+      to.tooltip()
+      var from = $("<b>To: </b>"+"<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title='" + separate(email.to) + "'>" + email.to.length + puluralise(" recipient", email.to.length) + " </a>").appendTo(contacts)
+      from.tooltip()
+      //contacts.append("<b>To: </b>" + "<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title=" + email.to.length + puluralise(" recipient", email.to.length)+ ">" + email.from.name + " </a>")
   
         var panel_body = $('<div class="panel-body">').wrap('</div>').appendTo(message);
-        var body1 = $('<div class="text">').text(email.body.substring(0,100)+"...").wrap('</div>').appendTo(panel_body);
+      var body1 = $('<div class="text">').text(email.paragraph +"...").wrap('</div>').appendTo(panel_body);
         var body2 = $('<div class="text" style="display: none;">').text(email.body).wrap('</div>').appendTo(panel_body);
   
         var extras = $('<div class="list-extra">').wrap('</div>').appendTo(panel_body);
@@ -77,6 +80,15 @@ $(document).ready(function() {
       } else {
         return word;
       }
+  }
+  
+  function separate(recips) {
+    var l = '';
+     for (var i = 0; i < recips.length; i++) {
+       console.log(recips[i])
+    l =  l + recips[i].name + ',';
+  }
+  return l;
     }
   }, false);
   
