@@ -35,7 +35,7 @@ iframe = {
 	showing: false,
 	
 	injectIFrame: function() {
-		$("html").append("<iframe id='hashtag-view' src='"+chrome.extension.getURL("ui/single.html")+"' style='height:100%; width:100%; top:0px; right:0px; position:absolute; z-index:1000; display:none;'></iframe>");
+		$("html").append("<iframe id='hashtag-view' src='"+chrome.extension.getURL("ui/multiple.html")+"' style='height:100%; width:100%; top:0px; right:0px; position:absolute; z-index:1000; display:none;'></iframe>");
 	},
 	
 	showIFrame: function(messages) {
