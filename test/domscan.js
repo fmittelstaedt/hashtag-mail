@@ -4,7 +4,24 @@ function expandAndLoadMessages() {
 
 function findHashtagsInBody(body) {
 	var hashtags = new Array();
-	
+	$body = $.parseHTML( body );
+
+	var regexp = /#[A-Za-z0-9]+/;
+	var $paragraphs = $body.find("p");
+
+	$paragraphs.forEach(function(entry) {
+		var paragraph = $(this).text();
+		var match, matches = [];
+
+		while ((match = regexp.exec(paragraph)) != null) {
+			var tag = match.index;
+			if !tag in hashtags {
+				hashtags[tag] = new Array();
+				hashtags[tag].push(paragraph);
+			}
+		}
+	});
+
 	return hashtags;
 }
 
