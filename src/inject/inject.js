@@ -8,28 +8,30 @@ chrome.extension.sendMessage({}, function(response) {
 		console.log("Hello. This message was sent from scripts/inject.js");
 		// ----------------------------------------------------------
 		setTimeout(function(){
-			hashtags.injectIFrame()
+			iframe.injectIFrame()
 		}, 1000);
 		
 		chrome.runtime.onMessage.addListener(
-		  function(request, sender, sendResponse) {
-		    console.log(sender.tab ?
-		                "from a content script:" + sender.tab.url :
-		                "from the extension");
-		    if (request.msg_type == "show_tags") {
-		    	if (hashtags.showing) {
-		    		hashtags.hideIFrame();
-		    	} else {
-  					hashtags.showIFrame({});
-            console.log(scanPageForEmails());
-		    	}
-		    }
-		  });
+			function(request, sender, sendResponse) {
+				console.log(sender.tab ?
+										"from a content script:" + sender.tab.url :
+										"from the extension");
+				if (request.msg_type == "show_tags") {
+					if (iframe.showing) {
+						iframe.hideIFrame();
+					} else {
+						iframe.showIFrame({});
+						var frame = document.getElementById("hashtag-view");
+						frame.contentWindow.postMessage({hashtags:hashtags}, "*");
+						console.log(convertEmailsToHashtags(scanPageForEmails()));
+					}
+				}
+			});
 	}
 	}, 10);
 });
 
-hashtags = {
+iframe = {
 	
 	showing: false,
 	
@@ -39,11 +41,11 @@ hashtags = {
 	
 	showIFrame: function(messages) {
 		$("#hashtag-view").fadeIn();
-		hashtags.showing = true;
+		iframe.showing = true;
 	},
 	
 	hideIFrame: function() {
 		$("#hashtag-view").fadeOut();
-		hashtags.showing = false;
+		iframe.showing = false;
 	}
 }
