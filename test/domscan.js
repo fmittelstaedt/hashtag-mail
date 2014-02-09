@@ -1,5 +1,7 @@
 function expandAndLoadMessages() {
+	console.log("starting expansion");
 	$("div#\\:2 *[role='button'][data-tooltip='Alle maximieren']").click();
+	console.log("finished expansion");
 }
 
 function findHashtagsInBody(body) {

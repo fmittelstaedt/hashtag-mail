@@ -8,7 +8,22 @@ chrome.extension.sendMessage({}, function(response) {
 		console.log("Hello. This message was sent from scripts/inject.js");
 		// ----------------------------------------------------------
 		setTimeout(function(){
+			expandAndLoadMessages();
 			iframe.injectIFrame()
+			$("div#\\:2 div.nH div.nH div.nH table.Bs.nH.iY tr td.Bu div.nH.if div.nH.aHU div.nH.hx div.nH:nth-child(3) > div").each(function(i){ $(this).html($(this).html().replace(/(#\w+)/g,"<a href='#' class='hashtag' data-tag='$1'>$1</a>"));});
+			$('.hashtag').each(function(){
+				$(this).click(function(){
+					var tag = $(this).data('tag');
+					var frame = document.getElementById("hashtag-view");
+					var data = convertEmailsToHashtags(scanPageForEmails());
+					data.forEach(function(index){
+						if (index['tag'] == tag) {
+							frame.contentWindow.postMessage({hashtags:[index]}, "*");
+							iframe.showIFrame({});
+						}
+					})
+				});
+			});
 		}, 1000);
 		
 		chrome.runtime.onMessage.addListener(
