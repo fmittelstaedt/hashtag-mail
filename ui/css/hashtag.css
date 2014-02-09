@@ -115,11 +115,16 @@ body {
 .panel {
   margin-bottom: 0;
   word-wrap: break-word;
-  border-color: green;
+}
+
+.panel-success > .panel-heading {
+  background-image: none; /* -webkit-linear-gradient(top, #dff0d8 0%, #d0e9c6 100%); */
+  background-image: none;/* linear-gradient(to bottom, #dff0d8 0%, #d0e9c6 100%); */
+  background-color: inherit;
 }
 
 .panel-heading {
-  background-image: #1abc9c;
+  background-color: #000000;
 }
 
 .well {
