@@ -42,6 +42,7 @@
         "https://mail.google.com/*"
       ],
       "js": [
+        "test/domscan.js",
         "js/jquery/jquery.min.js",
         "src/inject/inject.js"
       ]

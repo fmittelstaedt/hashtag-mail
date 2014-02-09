@@ -15,7 +15,7 @@ function findHashtagsInBody(body) {
 
 		while ((match = regexp.exec(paragraph)) != null) {
 			var tag = match.index;
-			if !tag in hashtags {
+			if (!(tag in hashtags)) {
 				hashtags[tag] = new Array();
 				hashtags[tag].push(paragraph);
 			}
@@ -48,8 +48,6 @@ function scanPageForEmails() {
 			emails[index]["to"][index2]["name"] = $(this).find("span.g2").html();
 			//to adresses
 			emails[index]["to"][index2]["email"] = $(this).find("span.g2").attr("email")
-
-			i++;
 		});
 		
 		//datetime
@@ -97,10 +95,11 @@ function scanPageForEmails() {
 			} else {
 				emails[index]["attachments"][index2]["url"] = $(this).find("a.aQy").attr("href");
 			}
-		}
+		});
 
 		//hashtags
-		emails[index]["hashtags"] = findHashtagsInBody(emails["body"]);
+		//emails[index]["hashtags"] = findHashtagsInBody(emails[index]["body"]);
+		console.log(emails[index]["body"]);
 
 	});
 
@@ -113,7 +112,7 @@ function convertEmailsToHashtags(emails) {
 	emails.forEach(function(entry) {
 	    emails[entry][hashtags].forEach(function(entry2){
 	    	var tag = emails[entry][hashtags][entry2]["tag"];
-	    	if !tag in hashtags {
+	    	if (!(tag in hashtags)) {
 	    		hashtags[tag] = new Array();
 	    	}
 	    	n = length(hashtags[tag]);

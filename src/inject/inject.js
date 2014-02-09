@@ -20,7 +20,8 @@ chrome.extension.sendMessage({}, function(response) {
 		    	if (hashtags.showing) {
 		    		hashtags.hideIFrame();
 		    	} else {
-					hashtags.showIFrame({});
+  					hashtags.showIFrame({});
+            console.log(scanPageForEmails());
 		    	}
 		    }
 		  });
