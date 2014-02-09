@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  window.addEventListener("update_content", function(evt) {
+    console.log("should update content with.");
+    console.log(evt.hashtags);//Do something with hashtags
+  }, false);
+  
   var wrapper = $(".list-wrapper");
   
   for (var i = 0; i < hashtags.length; i++) {
