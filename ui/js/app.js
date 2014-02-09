@@ -1,5 +1,26 @@
 $(document).ready(function() {
   window.addEventListener("message", function(evt) {
+    
+    Colors = {};
+    Colors.names = {
+      lightblue: "#add8e6",
+      lightcyan: "#e0ffff",
+      lightgreen: "#90ee90",
+      lightgrey: "#d3d3d3",
+      lightpink: "#ffb6c1",
+      lightyellow: "#ffffe0",
+      lime: "#00ff00",
+    };
+    
+    Colors.random = function() {
+        var result;
+        var count = 0;
+        for (var prop in this.names)
+            if (Math.random() < 1/++count)
+               result = prop;
+        return result;
+    };
+    
     console.log("should update content.");
 
     var hashtags = evt.data.hashtags;
@@ -23,8 +44,8 @@ $(document).ready(function() {
 
       for (var x = 0; x < hashtags[i].emails.length; x++) {
         var email = hashtags[i].emails[x];
-
-        recipients[email.from.email] = email.from.name;
+        
+        recipients[email.from.email] = {name: email.from.name, color: Colors.random()};
 
         var message = $('<div class="message panel panel-success" data-message-email="' + email.from.email + '">').wrap('</div>').appendTo(messages);
         var panel_heading = $('<div class="panel-heading">').wrap('</div>').appendTo(message);
@@ -57,10 +78,15 @@ $(document).ready(function() {
         });  
       }
     }
+    
+    $.each($('.message'), function() {
+      var email = $(this).data("message-email")
+      console.log($(this).find(".panel-heading").attr('style', 'background-color: ' + recipients[email].color + ' !important'));
+    });
 
     var footer = $("#footer .nav-pills")
     for(var recipient in recipients) {
-      var pill = $('<li data-email=' + recipient + '"><a href="#">' + recipients[recipient] + '</a></li>')
+      var pill = $('<li data-email=' + recipient + '"><a href="#">' + recipients[recipient].name + '</a></li>')
       var person = pill.wrap('</div>').appendTo(footer);
       pill.on("click", function() {
         var email = $(this).data("email");
