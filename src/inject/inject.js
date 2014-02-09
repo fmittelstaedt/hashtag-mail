@@ -22,8 +22,7 @@ chrome.extension.sendMessage({}, function(response) {
 					} else {
 						iframe.showIFrame({});
 						var frame = document.getElementById("hashtag-view");
-						frame.contentWindow.postMessage({hashtags:hashtags}, "*");
-						console.log(convertEmailsToHashtags(scanPageForEmails()));
+						frame.contentWindow.postMessage({hashtags:convertEmailsToHashtags(scanPageForEmails())}, "*");
 					}
 				}
 			});
