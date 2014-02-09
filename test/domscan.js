@@ -26,6 +26,11 @@ function findHashtagsInBody(body) {
 	return hashtags;
 }
 
+$('div#\\:2 div.nH div.nH div.nH table.Bs.nH.iY tr td.Bu div.nH.if div.nH.aHU div.nH.hx div.nH:nth-child(3) > div').each(function( index ) {
+	$(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gE.iv.gt table.cf.gJ tbody tr.acZ.xD td table.cf.adz tbody tr td.ady div.iw.ajw span.hb span.g2").each(function( index2 ) {
+			console.log("bla");});
+});
+
 function scanPageForEmails() {
 	var emails = new Array();
 	// All E-mail items
@@ -42,13 +47,13 @@ function scanPageForEmails() {
 		emails[index]["from"]["email"] = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gE.iv.gt table.cf.gJ tbody tr td.gF.gK span").attr("email");
 
 		emails[index]["to"] = new Array();
-		$(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gE.iv.gt table.cf.gJ tbody tr.acZ.xD td table.cf.adz tbody tr td.ady div.iw.ajw span.hb").each(function( index2 ) {
+		$(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gE.iv.gt table.cf.gJ tbody tr.acZ.xD td table.cf.adz tbody tr td.ady div.iw.ajw span.hb span.g2").each(function( index2 ) {
 			emails[index]["to"][index2] = new Array();
 
 			//to namesv
-			emails[index]["to"][index2]["name"] = $(this).find("span.g2").html();
+			emails[index]["to"][index2]["name"] = $(this).html();
 			//to adresses
-			emails[index]["to"][index2]["email"] = $(this).find("span.g2").attr("email");
+			emails[index]["to"][index2]["email"] = $(this).attr("email");
 		});
 		
 		//datetime
@@ -109,31 +114,30 @@ function scanPageForEmails() {
 function convertEmailsToHashtags(emails) {
 	var hashtags = new Array();
 
-	console.log(emails);
+	hashtagPositions = new Array();
 
 	emails.forEach(function(email) {
-		console.log(email);
 	    email["hashtags"].forEach(function(tag){
-	    	console.log(tag);
-	    	if (!(tag in hashtags)) {
-	    		hashtags.push(tag);
-	    		hashtags[tag] = new Array();
+	    	if (!(tag in hashtagPositions)) {
+	    		var n = hashtags.length;
+	    		hashtagPositions[tag] = n;
+	    		hashtags[hashtagPositions[tag]] = new Array();
+	    		hashtags[hashtagPositions[tag]]["tag"] = tag;
+	    		hashtags[hashtagPositions[tag]]["emails"] = new Array();
 	    	}
 
-	    	n = hashtags[tag].length;
-	    	hashtags[tag][n] = new Array();
+	    	var n = hashtags[hashtagPositions[tag]]["emails"].length;
+	    	hashtags[hashtagPositions[tag]]["emails"][n] = new Array();
 
-	    	hashtags[tag][n]["profile_img"] = email["profile_img"];
-	    	hashtags[tag][n]["from"] = email["from"];
-	    	hashtags[tag][n]["to"] = email["to"];
-	    	hashtags[tag][n]["datetime"] = email["datetime"];
-	    	hashtags[tag][n]["body"] = email["body"];
+	    	hashtags[hashtagPositions[tag]]["emails"][n]["profile_img"] = email["profile_img"];
+	    	hashtags[hashtagPositions[tag]]["emails"][n]["from"] = email["from"];
+	    	hashtags[hashtagPositions[tag]]["emails"][n]["to"] = email["to"];
+	    	hashtags[hashtagPositions[tag]]["emails"][n]["datetime"] = email["datetime"];
+	    	hashtags[hashtagPositions[tag]]["emails"][n]["body"] = email["body"];
 
-	    	hashtags[tag][n]["paragraph"] = email["hashtags"][tag];
+	    	hashtags[hashtagPositions[tag]]["emails"][n]["paragraph"] = email["hashtags"][tag];
 	    })
 	});
-
-	console.log(hashtags);
 	
 	return hashtags;
 }
