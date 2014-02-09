@@ -18,7 +18,9 @@ $(document).ready(function() {
       var email = emails[x];
       var message = $('<div class="message panel panel-default">').wrap('</div>').appendTo(messages);
       var panel_heading = $('<div class="panel-heading">').html("<b>From: </b>" + email.from.email + " </br><b>To: </b>" + email.to.length + puluralise(" recipient", email.to.length)).wrap('</div>').appendTo(message);
-      var panel_body = $('<div class="panel-body">').text(email.body).wrap('</div>').appendTo(message);
+      var panel_body = $('<div class="panel-body">').wrap('</div>').appendTo(message);
+      var body1 = $('<div class="text">').text(email.body).wrap('</div>').appendTo(panel_body);
+      var body2 = $('<div class="text" style="display: none;">').text(email.body).wrap('</div>').appendTo(panel_body);
     }
   }
 
