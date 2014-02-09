@@ -85,7 +85,6 @@ $(document).ready(function() {
   function separate(recips) {
     var l = '';
      for (var i = 0; i < recips.length; i++) {
-       console.log(recips[i])
     l =  l + recips[i].name + ',' + '<'+ recips[i].email +'>';
     }
     return l;
