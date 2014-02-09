@@ -23,8 +23,16 @@ $(document).ready(function() {
       var body2 = $('<div class="text" style="display: none;">').text(email.body + "3495873985793").wrap('</div>').appendTo(panel_body);
       var button = $('<button type="button" style="float:right;" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-down"></span>').wrap('</button>').appendTo(panel_body);
 
-      button.on("click", function() {
-        button.parent().find(".text").toggle();
+      button.bind("click", function(e) {
+	if ($(this).find("span").hasClass("glyphicon-chevron-down")) {
+	  $(this).find("span").removeClass('glyphicon-chevron-down');
+	  $(this).find("span").addClass('glyphicon-chevron-up');
+	} else {
+	  $(this).find("span").removeClass('glyphicon-chevron-up');
+	  $(this).find("span").addClass('glyphicon-chevron-down');
+	}
+
+	$(this).parent().find(".text").toggle();
       });
       
     }
