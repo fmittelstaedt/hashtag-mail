@@ -9,7 +9,7 @@ body {
 }
 
 .list {
-  height: 700px;
+  height: auto;
   overflow-y: auto;
 }
 
