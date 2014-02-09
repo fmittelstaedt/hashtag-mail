@@ -47,7 +47,7 @@ function scanPageForEmails() {
 			//to namesv
 			emails[index]["to"][index2]["name"] = $(this).find("span.g2").html();
 			//to adresses
-			emails[index]["to"][index2]["email"] = $(this).find("span.g2").attr("email")
+			emails[index]["to"][index2]["email"] = $(this).find("span.g2").attr("email");
 		});
 		
 		//datetime
@@ -55,8 +55,8 @@ function scanPageForEmails() {
 
 		//content
 		var $body = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gt.adP.adO div div:first-child");
-		if ($body.html() == "") {
-			$body = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gt.adP.adO div span:first-child");
+		if ($body.html().trim() == "") {
+			$body = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gt.adP.adO div span");
 		}
 
 		$body.find("div[role=\"button\"]").remove();
@@ -99,7 +99,6 @@ function scanPageForEmails() {
 
 		//hashtags
 		//emails[index]["hashtags"] = findHashtagsInBody(emails[index]["body"]);
-		console.log(emails[index]["body"]);
 
 	});
 
