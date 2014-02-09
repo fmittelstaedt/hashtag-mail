@@ -4,7 +4,7 @@ function expandAndLoadMessages() {
 
 function findHashtagsInBody(body) {
 	var hashtags = new Array();
-
+	
 	return hashtags;
 }
 
@@ -39,12 +39,33 @@ function scanPageForEmails() {
 		emails[index]["datetime"] = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gE.iv.gt table.cf.gJ tbody tr.acZ td.gH div.gK span.g3").html();
 
 		//content
-		emails[index]["body"] = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gt.adP.adO div div:first-child").html();
-		// $body = $body.filter("br").remove();
-		// $body = $body.find("div").filter(function() {
-		//        return $.trim($(this).text()) === '' && $(this).children().length == 0
-		//    });
-		// replace <div> by <p>, </div> by </p> and <div><br></div> by ""
+		var $body = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gt.adP.adO div div:first-child");
+		if ($body.html() == "") {
+			$body = $(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gt.adP.adO div span:first-child");
+		}
+
+		$body.find("div[role=\"button\"]").remove();
+		$body.find("blockquote.gmail_quote").remove();
+
+		$body = $body.html();
+		if (typeof $body === 'undefined') {
+		$body = "";
+		}
+		$body = "<p>"+$body+"</p>";
+		$body = $body.replace(/<div><br[^>]*[\/]{0,1}><\/div>/g,"</p><p>");
+		$body = $body.replace(/<br[^>]*[\/]{0,1}>/g,"");
+
+		$body = $body.replace(/<font[^>]*>/g,"");
+		$body = $body.replace(/<\/font>/g,"");
+
+		$body = $body.replace(/<div[^>]*>/g,"<p>");
+		$body = $body.replace(/<\/div>/g,"</p>");
+
+		$body = $body.replace(/<p>\s*<p>/g,"<p>");
+		$body = $body.replace(/<\/p>\s*<\/p>/g,"</p>");
+		$body = $body.replace(/<p>\s*<\/p>/g,"");
+
+		emails[index]["body"] = $body;
 		
 		//attachments
 		emails[index]["attachments"] = new Array();
@@ -72,6 +93,25 @@ function scanPageForEmails() {
 function convertEmailsToHashtags(emails) {
 	var hashtags = new Array();
 
+	emails.forEach(function(entry) {
+	    emails[entry][hashtags].forEach(function(entry2){
+	    	var tag = emails[entry][hashtags][entry2]["tag"];
+	    	if !tag in hashtags {
+	    		hashtags[tag] = new Array();
+	    	}
+	    	n = length(hashtags[tag]);
+	    	hashtags[tag][n] = new Array();
+
+	    	hashtags[tag][n]["profile_img"] = emails[entry]["profile_img"];
+	    	hashtags[tag][n]["from"] = emails[entry]["from"];
+	    	hashtags[tag][n]["to"] = emails[entry]["to"];
+	    	hashtags[tag][n]["datetime"] = emails[entry]["datetime"];
+	    	hashtags[tag][n]["body"] = emails[entry]["body"];
+
+	    	hashtags[tag][n]["body"]["paragraph"] = emails[entry][hashtags][entry2]["paragraph"];
+	    })
+	});
+	
 	return hashtags;
 }
 
