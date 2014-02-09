@@ -23,6 +23,12 @@
   "permissions": [
     "https://mail.google.com/*"
   ],
+  "web_accessible_resources": [
+    "ui/single.html",
+    "ui/css/bootstrap.css.map",
+    "ui/css/bootstrap-theme.css.map",
+    "ui/js/jquery.min.map"
+  ],
   "content_scripts": [
     {
       "matches": [
