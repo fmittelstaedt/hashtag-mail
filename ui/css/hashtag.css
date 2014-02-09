@@ -76,6 +76,7 @@ body {
 .panel {
   margin-bottom: 0;
   word-wrap: break-word;
+  border-color: green;
 }
 
 .panel-heading {
