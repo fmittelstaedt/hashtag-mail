@@ -31,7 +31,7 @@ $(document).ready(function() {
   
         var avatar = $('<img id="avatar" src="' + email.profile_img + '"></img>').appendTo(panel_heading)
         var contacts = $('<div id="contacts"></div>').appendTo(panel_heading)
-      var to = $("<b>From: </b>"+"<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title='" + email.from.email + "'>" + email.from.name + " </a>").appendTo(contacts)
+      var to = $("<b>From: </b>"+"<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title='" + email.from.email + "'>" + email.from.name + " </a></br>").appendTo(contacts)
       to.tooltip()
       var from = $("<b>To: </b>"+"<a href='#' data-toggle='tooltip' data-placement='right' title data-original-title='" + separate(email.to) + "'>" + email.to.length + puluralise(" recipient", email.to.length) + " </a>").appendTo(contacts)
       from.tooltip()
@@ -86,9 +86,9 @@ $(document).ready(function() {
     var l = '';
      for (var i = 0; i < recips.length; i++) {
        console.log(recips[i])
-    l =  l + recips[i].name + ',';
-  }
-  return l;
+    l =  l + recips[i].name + ',' + '<'+ recips[i].email +'>';
+    }
+    return l;
     }
   }, false);
   
