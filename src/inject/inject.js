@@ -24,7 +24,7 @@ chrome.extension.sendMessage({}, function(response) {
 					})
 				});
 			});
-		}, 1000);
+		}, 10000);
 		
 		chrome.runtime.onMessage.addListener(
 			function(request, sender, sendResponse) {
