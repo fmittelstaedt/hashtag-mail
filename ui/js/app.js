@@ -61,14 +61,12 @@ $(document).ready(function() {
       var person = pill.wrap('</div>').appendTo(footer);
       pill.on("click", function() {
         var email = $(this).data("email");
-
-        //$('.messages :not([data-message-email="' + email.substring(0, email.length - 1) + '"])')
-
-        //console.log($(".messages")).filter(function() {
-        //  return $(this).data("message-email") !=  email.substring(0, email.length - 1)
-        //});
-
-
+        // maybe comment
+        $(".message").show();
+        $(".message").filter(function() {
+          return $(this).data("message-email") != email.substring(0, email.length - 1)
+        }).toggle();
+        $(".nav li").removeClass("active")
         $(this).addClass("active")
       });
     }
