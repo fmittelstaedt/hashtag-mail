@@ -2,6 +2,7 @@
 
 body {
   background: #1ABC9C;
+  height: 100%;
   min-width: 100%;
   /* width: 1932px; */
 }
@@ -13,8 +14,8 @@ body {
 }
 
 .list {
-  height: auto;
   overflow-y: auto;
+  max-height: 640px;
 }
 
 .list-single {
