@@ -8,6 +8,7 @@ chrome.extension.sendMessage({}, function(response) {
 		console.log("Hello. This message was sent from scripts/inject.js");
 		// ----------------------------------------------------------
 		setTimeout(function(){
+			expandAndLoadMessages();
 			iframe.injectIFrame()
 		}, 1000);
 		
