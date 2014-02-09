@@ -1,5 +1,5 @@
 function expandAndLoadMessages() {
-
+	$("div#\\:2 *[role='button'][data-tooltip='Alle maximieren']").click();
 }
 
 function findHashtagsInBody(body) {
@@ -25,11 +25,6 @@ function findHashtagsInBody(body) {
 
 	return hashtags;
 }
-
-$('div#\\:2 div.nH div.nH div.nH table.Bs.nH.iY tr td.Bu div.nH.if div.nH.aHU div.nH.hx div.nH:nth-child(3) > div').each(function( index ) {
-	$(this).find("div.Bk div.G3.G2 div div div.ads div.gs div.gE.iv.gt table.cf.gJ tbody tr.acZ.xD td table.cf.adz tbody tr td.ady div.iw.ajw span.hb span.g2").each(function( index2 ) {
-			console.log("bla");});
-});
 
 function scanPageForEmails() {
 	var emails = new Array();
