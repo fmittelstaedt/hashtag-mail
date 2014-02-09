@@ -54,13 +54,13 @@ $(document).ready(function() {
 
   var footer = $("#footer .nav-pills")
   for(var recipient in recipients) {
-    footer.append('<li class="active" data-email=' + recipient + '"><a href="#">' + recipients[recipient] + '</a></li>')
+    footer.append('<li class="active" data-email=' + recipient + '"><a href="#">' + recipients[recipient] + '</a></li>');
   }
 
-  $('[data-email="' + recipients[recipient] + '"]').click(function(e) {
-    alert("hello")
-    $('[data-email="' + recipients[recipient] + '"]').toggle();
-  });
+  //$('[data-email="' + recipients[recipient] + '"]').click(function(e) {
+  //  alert("hello")
+  //  $('[data-email="' + recipients[recipient] + '"]').toggle();
+  //});
 
   function puluralise(word, count) {
     if (count > 1) {

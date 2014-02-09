@@ -95,7 +95,7 @@ there there here https://docs.google.com/document/d/1ygvDrwJUjN0g14JbMg0Jj8rZv7y
 	},
 	{
 		profile_img: "https://plus.google.com/u/0/_/focus/photos/private/AIbEiAIAAAAhCOGTkJjCoI2DpAEQ4ob1lPKJujQY1tj7xOCK6eODATAB8oRNIH1zzMb-0cGRMxXc3U540-A?sz=24",
-		from: {name:"Karina Palyutina", email:"karina.palyutina@gmail.com111"},
+		from: {name:"Karina Palyutina 111", email:"karina.palyutina@gmail.com111"},
 		to: [
 			{name:"Sam Pattuzzi", email:"sam.pattuzzi@gmail.com"},
 			{name:"Gregor Frédérique Mittelstaedt", email:"frederique.mittelstaedt@googlemail.com"}
