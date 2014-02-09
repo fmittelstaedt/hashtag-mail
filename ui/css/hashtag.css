@@ -39,6 +39,15 @@ body {
   margin-bottom: 15px !important;
 }
 
+#datetime {
+  font-size: 12px;
+  font-weight: 700;
+  color: #bbb;
+  text-transform: uppercase;
+  display: inline;
+  vertical-align: bottom;
+}
+
 #avatar {
   border-radius: 3px;
   width: 30px;
@@ -89,6 +98,11 @@ body {
 /* Footer END */
 
 /* Override */
+
+.nav {
+  margin-top: 5px;
+  margin-left: 5px;
+}
 
 .panel {
   margin-bottom: 0;

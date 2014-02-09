@@ -25,10 +25,10 @@ $(document).ready(function() {
 
       recipients[email.from.email] = email.from.name;
 
-      var message = $('<div class="message panel panel-success" data-email="' + email.from.email + '">').wrap('</div>').appendTo(messages);
+      var message = $('<div class="message panel panel-success" data-message-email="' + email.from.email + '">').wrap('</div>').appendTo(messages);
       var panel_heading = $('<div class="panel-heading">').wrap('</div>').appendTo(message);
       
-      var avatar = $('<img id="avatar" src="30.png"></img>').appendTo(panel_heading)
+      var avatar = $('<img id="avatar" src="' + email.profile_img + '"></img>').appendTo(panel_heading)
       var contacts = $('<div id="contacts"></div>').appendTo(panel_heading)
       var to = $("<b>From: </b>" + email.from.email + " </br>").appendTo(contacts)
       contacts.append("<b>To: </b>" + email.to.length + puluralise(" recipient", email.to.length))
@@ -38,6 +38,8 @@ $(document).ready(function() {
       var body2 = $('<div class="text" style="display: none;">').text(email.body).wrap('</div>').appendTo(panel_body);
       
       var extras = $('<div class="list-extra">').wrap('</div>').appendTo(panel_body);
+
+      var datetime = $('<div id="datetime">').text(email.datetime).wrap('</div>').appendTo(extras);
       var button = $('<button type="button" style="float:right;" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-down"></span>').wrap('</button>').appendTo(extras);
         button.on("click", function() {
         	if ($(this).find("span").hasClass("glyphicon-chevron-down")) {
@@ -54,13 +56,21 @@ $(document).ready(function() {
 
   var footer = $("#footer .nav-pills")
   for(var recipient in recipients) {
-    footer.append('<li class="active" data-email=' + recipient + '"><a href="#">' + recipients[recipient] + '</a></li>');
-  }
+    var pill = $('<li data-email=' + recipient + '"><a href="#">' + recipients[recipient] + '</a></li>')
+    var person = pill.wrap('</div>').appendTo(footer);
+    pill.on("click", function() {
+      var email = $(this).data("email");
 
-  //$('[data-email="' + recipients[recipient] + '"]').click(function(e) {
-  //  alert("hello")
-  //  $('[data-email="' + recipients[recipient] + '"]').toggle();
-  //});
+      //$('.messages :not([data-message-email="' + email.substring(0, email.length - 1) + '"])')
+
+      //console.log($(".messages")).filter(function() {
+      //  return $(this).data("message-email") !=  email.substring(0, email.length - 1)
+      //});
+
+
+      $(this).addClass("active")
+    });
+  }
 
   function puluralise(word, count) {
     if (count > 1) {
